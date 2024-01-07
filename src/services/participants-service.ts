@@ -6,7 +6,7 @@ export async function createParticipant({ email, balance }: CreateParticipantPar
 
   await validateUniqueEmailOrFail(email);
 
-  return participantRepository.create({
+  return participantsRepository.create({
     email,
     balance,
   });
