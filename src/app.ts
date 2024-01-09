@@ -12,10 +12,7 @@ const app = express();
 app
   .use(cors())
   .use(express.json())
-  .use('/users', usersRouter)
-  .use('/auth', authenticationRouter)
-  .use('/credential', credentialsRouter)
-  .use('/network', networkRouter)
+  .use('/participants', participantsRouter)
   .use(handleApplicationErrors);
 
 export function init(): Promise<Express> {
