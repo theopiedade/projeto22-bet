@@ -14,7 +14,7 @@ export function handleApplicationErrors(
     });
   }
 
-  if (err.name === 'ConflictError' || err.name === 'DuplicatedEmailError') {
+  if (err.name === 'ConflictError' || err.name === 'DuplicatedNameError') {
     return res.status(httpStatus.CONFLICT).send({
       message: err.message,
     });
