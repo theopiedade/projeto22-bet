@@ -3,7 +3,7 @@ import 'express-async-errors';
 import express, { Express } from 'express';
 import cors from 'cors';
 import { handleApplicationErrors } from '@/middlewares';
-import { participantsRouter } from '@/routers';
+import { participantsRouter, gamesRouter } from '@/routers';
 import { loadEnv, connectDb, disconnectDB } from '@/config';
 
 loadEnv();
@@ -13,6 +13,7 @@ app
   .use(cors())
   .use(express.json())
   .use('/participants', participantsRouter)
+  .use('/games', gamesRouter)
   .use(handleApplicationErrors);
 
 export function init(): Promise<Express> {
