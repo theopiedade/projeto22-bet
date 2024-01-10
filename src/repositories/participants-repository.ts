@@ -21,7 +21,12 @@ async function create(data: Prisma.ParticipantUncheckedCreateInput) {
   });
 }
 
+async function findParticipants() {
+  return prisma.participant.findMany();
+}
+
 export const participantsRepository = {
   findByName,
   create,
+  findParticipants
 };

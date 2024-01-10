@@ -13,10 +13,14 @@ export async function createParticipant({ name, balance }: CreateParticipantPara
 }
 
 async function validateUniqueNameOrFail(name: string) {
-  const userWithSameEmail = await participantsRepository.findByName(name);
-  if (userWithSameEmail) {
+  const userWithSameName = await participantsRepository.findByName(name);
+  if (userWithSameName) {
     throw duplicatedNameError();
   }
+}
+
+async function getParticipants() {
+  return participantsRepository.findParticipants();
 }
 
 
@@ -24,4 +28,5 @@ export type CreateParticipantParams = Pick<Participant, 'name' | 'balance'>;
 
 export const participantsService = {
   createParticipant,
+  getParticipants
 };
