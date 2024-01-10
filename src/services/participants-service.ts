@@ -2,25 +2,25 @@ import { Participant } from '@prisma/client';
 import { duplicatedEmailError } from '../errors';
 import { participantsRepository } from '../repositories';
 
-export async function createParticipant({ email, balance }: CreateParticipantParams): Promise<Participant> {
+export async function createParticipant({ name, balance }: CreateParticipantParams): Promise<Participant> {
 
-  await validateUniqueEmailOrFail(email);
+  await validateUniqueNameOrFail(name);
 
   return participantsRepository.create({
-    email,
+    name,
     balance,
   });
 }
 
-async function validateUniqueEmailOrFail(email: string) {
-  const userWithSameEmail = await participantRepository.findByEmail(email);
+async function validateUniqueNameOrFail(name: string) {
+  const userWithSameEmail = await participantsRepository.findByName(name);
   if (userWithSameEmail) {
     throw duplicatedEmailError();
   }
 }
 
 
-export type CreateParticipantParams = Pick<Participant, 'email' | 'balance'>;
+export type CreateParticipantParams = Pick<Participant, 'name' | 'balance'>;
 
 export const participantsService = {
   createParticipant,
