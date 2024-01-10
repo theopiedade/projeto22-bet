@@ -43,8 +43,8 @@ model Bets {
   amountBet Float
   gameId Int
   participantId Int
-  status String
-  amountWon Int
+  status String @default("pending")
+  amountWon Int @default(0)
 
   @@map("bets")
 }
