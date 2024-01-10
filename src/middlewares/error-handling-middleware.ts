@@ -50,7 +50,7 @@ export function handleApplicationErrors(
     });
   }
 
-  if (err.name === 'DuplicatedTitleError') {
+  if (err.name === 'DuplicatedTeamError') {
     return res.status(httpStatus.CONFLICT).send({
       message: err.message,
     });

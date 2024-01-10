@@ -8,5 +8,5 @@ export * from './request-error';
 export * from './invalid-credentials-error';
 export * from './invalid-credentials-access';
 export * from './duplicate-name-error';
-export * from './duplicate-title-error';
+export * from './duplicate-team-error';
 export * from './forbidden-error';
