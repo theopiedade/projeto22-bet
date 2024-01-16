@@ -41,11 +41,12 @@ export async function getGames(req: Request, res: Response) {
   }
 
 export async function getGameById(req: Request, res: Response) {
-    const id = Number(req.params.id);
+  const id = Number(req.params.id);
 
-    const game = await gamesService.getGamesById(id);
 
-    const bets = await betsService.getBetsByGameId(id);
+    const game = await gamesService.getGamesById(Number(id));
+
+    const bets = await betsService.getBetsByGameId(Number(id));
 
     return res.status(httpStatus.OK).json({
         id: game.id,
@@ -61,9 +62,12 @@ export async function getGameById(req: Request, res: Response) {
 }
 
 export async function finishGameById(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const  id  = Number(req.params);
+  const { homeTeamScore, awayTeamScore } = req.body;
 
-  const game = await gamesService.getGamesById(id);
+  gamesService.finishGameById(Number(id), Number(homeTeamScore), Number(awayTeamScore))
+
+  const game = await gamesService.getGamesById(Number(id));
 
   return res.status(httpStatus.OK).json({
       id: game.id,

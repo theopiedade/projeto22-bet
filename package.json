@@ -6,7 +6,7 @@
   "scripts": {
     "migration:run:dev": "npx prisma migrate dev",
     "migration:run:deploy": "npx prisma migrate deploy",
-    "pre:build": "npm install && npm run migration:run:deploy && npm i @prisma/client && npx prisma generate",
+    "pre:build": "npm install && npm run migration:run:deploy && npx prisma generate",
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "start": "node ./dist/server.js",
     "dev": "nodemon src/server.ts",
