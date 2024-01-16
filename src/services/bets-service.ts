@@ -39,7 +39,7 @@ export async function createBets({
   async function validateGameId(gameId: number) {
     const checkGameId = await gamesRepository.findGamesById(gameId);
 
-    if (checkGameId && checkGameId != null) {
+    if (!checkGameId || checkGameId == null) {
       throw invalidGameId();
     }
   }
@@ -47,7 +47,7 @@ export async function createBets({
   async function validateParticipantId(participantId: number) {
     const participant = await participantsRepository.findParticipantsById(participantId);
 
-    if (!participant && participant != null) {
+    if (!participant || participant == null) {
       throw invalidParticipantId();
     }
   }
