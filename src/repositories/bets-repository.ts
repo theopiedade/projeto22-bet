@@ -26,8 +26,25 @@ async function create(data: Prisma.BetsUncheckedCreateInput) {
     return prisma.bets.findUnique(params);
   }
   
+  async function findBetsByGameId(gameId: number, select?: Prisma.BetsSelect) {
+    const params: Prisma.BetsFindManyArgs= {
+      where: {
+        gameId,
+      },
+    };
+  
+    if (select) {
+      params.select = select;
+    }
+  
+    return prisma.bets.findMany(params);
+  
+  }
+
+
   export const betsRepository = {
     create,
     findAllBets,
-    findBetsById
+    findBetsById,
+    findBetsByGameId
   };

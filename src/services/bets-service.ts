@@ -23,8 +23,8 @@ export async function createBets({
     return betsRepository.findAllBets();
   }
 
-  async function getBetById(id: number) {
-    return betsRepository.findBetsById(id);
+  async function getBetsByGameId(id: number) {
+    return betsRepository.findBetsByGameId(id);
   }
   
   async function validateAmountBet(amountBet: number, participantId: number) {
@@ -58,6 +58,6 @@ export async function createBets({
   export const betsService = {
     createBets,
     getBets,
-    getBetById,
+    getBetsByGameId,
     validateAmountBet
   };
