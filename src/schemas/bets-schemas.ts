@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { CreateBetParams } from '@/services/bets-service';
 
-export const createGameSchema = Joi.object<CreateBetParams>({
+export const createBetSchema = Joi.object<CreateBetParams>({
   homeTeamScore: Joi.number().required(),
   awayTeamScore: Joi.number().required(),
   amountBet:Joi.number().required(),

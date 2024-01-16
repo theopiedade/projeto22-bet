@@ -31,3 +31,18 @@ export async function getParticipants(req: Request, res: Response) {
     return res.status(httpStatus.OK).send(result);
 
 }
+
+export async function getParticipantsById(req: Request, res: Response) {
+  const id = Number(req.params.id);
+ 
+  const participant = await participantsService.getParticipantsById(id)
+
+  return res.status(httpStatus.CREATED).json({
+    id: participant.id,
+    createdAt:  dayjs(participant.createdAt).format('DD/MM/YYYY'),
+    updatedAt: dayjs(participant.updatedAt).format('DD/MM/YYYY'),
+    name: participant.name,
+    balance: "R$"+(participant.balance/100).toFixed(2)
+  });
+
+}

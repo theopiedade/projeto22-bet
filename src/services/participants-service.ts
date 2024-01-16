@@ -23,10 +23,15 @@ async function getParticipants() {
   return participantsRepository.findParticipants();
 }
 
+async function getParticipantsById(id: number) {
+  return participantsRepository.findParticipantsById(id);
+}
+
 
 export type CreateParticipantParams = Pick<Participant, 'name' | 'balance'>;
 
 export const participantsService = {
   createParticipant,
-  getParticipants
+  getParticipants,
+  getParticipantsById
 };

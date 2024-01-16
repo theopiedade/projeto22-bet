@@ -25,7 +25,7 @@ async function findParticipants() {
   return prisma.participant.findMany();
 }
 
-async function findParticipantsById(id: number, select?: Prisma.GamesSelect) {
+async function findParticipantsById(id: number, select?: Prisma.ParticipantSelect) {
    
   const params: Prisma.ParticipantFindUniqueArgs = {
     where: {

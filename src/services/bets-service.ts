@@ -5,10 +5,11 @@ import { betsRepository, participantsRepository, gamesRepository } from '../repo
 
 export async function createBets({ 
     homeTeamScore, awayTeamScore, amountBet, gameId, participantId  }: CreateBetParams): Promise<Bets> {
-  
+
+  await validateParticipantId(participantId);    
   await validateAmountBet(amountBet, participantId);
   await validateGameId(gameId);
-  await validateParticipantId(participantId);
+
 
     return betsRepository.create({
       homeTeamScore,
@@ -28,9 +29,9 @@ export async function createBets({
   }
   
   async function validateAmountBet(amountBet: number, participantId: number) {
-    const participantAmount = await participantsRepository.findParticipantsById(participantId);
+    const participant = await participantsRepository.findParticipantsById(participantId);
 
-    if (participantAmount.balance < amountBet) {
+    if (participant.balance < amountBet) {
       throw insufficientBalanceError();
     }
   }
@@ -46,7 +47,7 @@ export async function createBets({
   async function validateParticipantId(participantId: number) {
     const participant = await participantsRepository.findParticipantsById(participantId);
 
-    if (participant && participant != null) {
+    if (!participant && participant != null) {
       throw invalidParticipantId();
     }
   }
