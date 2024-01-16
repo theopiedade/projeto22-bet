@@ -8,8 +8,8 @@ export function handleApplicationErrors(
   res: Response,
   next: NextFunction,
 ) {
-  if (err.name === 'CannotEnrollBeforeStartDateError') {
-    return res.status(httpStatus.BAD_REQUEST).send({
+  if (err.name === 'gameIsAlreadyFinished') {
+    return res.status(httpStatus.UNAUTHORIZED).send({
       message: err.message,
     });
   }

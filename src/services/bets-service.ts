@@ -1,6 +1,7 @@
 import { Bets } from '@prisma/client';
 import { insufficientBalanceError, invalidGameId, invalidParticipantId } from '../errors';
-import { betsRepository, participantsRepository, gamesRepository } from '../repositories';
+import { betsRepository, participantsRepository } from '../repositories';
+import { gamesService } from '../services';
 
 
 export async function createBets({ 
@@ -8,7 +9,7 @@ export async function createBets({
 
   await validateParticipantId(participantId);    
   await validateAmountBet(amountBet, participantId);
-  await validateGameId(gameId);
+  await gamesService.validateGameId(gameId);
 
 
     return betsRepository.create({
@@ -36,13 +37,7 @@ export async function createBets({
     }
   }
 
-  async function validateGameId(gameId: number) {
-    const checkGameId = await gamesRepository.findGamesById(gameId);
 
-    if (!checkGameId || checkGameId == null) {
-      throw invalidGameId();
-    }
-  }
  
   async function validateParticipantId(participantId: number) {
     const participant = await participantsRepository.findParticipantsById(participantId);

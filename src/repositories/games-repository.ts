@@ -6,6 +6,8 @@ async function create(data: Prisma.GamesUncheckedCreateInput) {
       data,
     });
   }
+
+
   
   async function findAllGames() {
     return prisma.games.findMany();
@@ -25,9 +27,22 @@ async function create(data: Prisma.GamesUncheckedCreateInput) {
   
     return prisma.games.findUnique(params);
   }
+
+  async function finishGameById(id: number, homeTeamScore: number, awayTeamScore: number ) {
+    const updatedGame = await prisma.games.update({
+      where: { id: id },
+      data: {
+        homeTeamScore: homeTeamScore,
+        awayTeamScore: awayTeamScore,
+        isFinished: true,
+      },
+    });
+    return updatedGame;
+  }
   
   export const gamesRepository = {
     create,
     findAllGames,
-    findGamesById
+    findGamesById,
+    finishGameById
   };

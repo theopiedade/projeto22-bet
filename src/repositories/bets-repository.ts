@@ -41,10 +41,21 @@ async function create(data: Prisma.BetsUncheckedCreateInput) {
   
   }
 
+  async function updateBets(id: number, status: string, amountWon: number ) {
+    const updatedBet = await prisma.bets.update({
+      where: { id: id },
+      data: {
+        status: status,
+        amountWon: amountWon,
+      },
+    });
+    return updatedBet;
+  }
 
   export const betsRepository = {
     create,
     findAllBets,
     findBetsById,
-    findBetsByGameId
+    findBetsByGameId,
+    updateBets
   };

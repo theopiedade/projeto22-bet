@@ -1,4 +1,4 @@
-export * from './cannot-enroll-before-start-date-error';
+export * from './game-is-already-finished';
 export * from './conflict-error';
 export * from './invalid-data-error';
 export * from './invalid-email-error';

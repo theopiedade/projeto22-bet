@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { betsService, gamesService } from '../services';
 import dayjs from 'dayjs';
+import { finishGameSchema } from '@/schemas';
 
 
 export async function gamePost(req: Request, res: Response) {
@@ -57,4 +58,21 @@ export async function getGameById(req: Request, res: Response) {
         isFinished: game.isFinished,
         bets
       });
+}
+
+export async function finishGameById(req: Request, res: Response) {
+  const id = Number(req.params.id);
+
+  const game = await gamesService.getGamesById(id);
+
+  return res.status(httpStatus.OK).json({
+      id: game.id,
+      createdAt:  dayjs(game.createdAt).format('DD/MM/YYYY'),
+      updatedAt: dayjs(game.updatedAt).format('DD/MM/YYYY'),
+      homeTeamName: game.homeTeamName,
+      awayTeamName: game.awayTeamName,
+      homeTeamScore: game.homeTeamScore,
+      awayTeamScore: game.awayTeamScore,
+      isFinished: game.isFinished
+    });
 }
