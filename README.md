@@ -2,13 +2,15 @@
 
 Back-end for Driven.t, an bet management solution.
 
+Deploy link: https://projeto22-bet-api.onrender.com
+
 ## About
 
 Bets is a back-end application with which you can manage bets.
 
 ## How to run for development
 
-1. Clone this repository > https://github.com/theopiedade/projeto22-bet
+1. Clone this repository 
 2. Install all dependencies
 
 ```bash
