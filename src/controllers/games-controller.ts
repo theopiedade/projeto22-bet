@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { gamesService } from '../services';
+import { betsService, gamesService } from '../services';
 import dayjs from 'dayjs';
 
 
@@ -44,6 +44,8 @@ export async function getGameById(req: Request, res: Response) {
 
     const game = await gamesService.getGamesById(id);
 
+    const bets = await betsService.getBetsByGameId(id);
+
     return res.status(httpStatus.OK).json({
         id: game.id,
         createdAt:  dayjs(game.createdAt).format('DD/MM/YYYY'),
@@ -52,6 +54,7 @@ export async function getGameById(req: Request, res: Response) {
         awayTeamName: game.awayTeamName,
         homeTeamScore: game.homeTeamScore,
         awayTeamScore: game.awayTeamScore,
-        isFinished: game.isFinished
+        isFinished: game.isFinished,
+        bets
       });
 }
