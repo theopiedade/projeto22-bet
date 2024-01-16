@@ -66,7 +66,10 @@ export async function createGames({ homeTeamName, awayTeamName }: CreateGamePara
         {
          if (betCheck.homeTeamScore == homeTeamScore || betCheck.awayTeamScore == awayTeamScore) {
           const amountWonCalc = (betCheck.amountBet/sumAllWinnersBetsAmount) * (sumAllBetsAmount) * (0.7);
-          finishBet(betCheck.id, "WON",amountWonCalc) 
+
+          const amountWon = Math.floor(amountWonCalc);
+
+          finishBet(betCheck.id, "WON",amountWon) 
          }
          else finishBet(betCheck.id, "LOST", 0);
         })
