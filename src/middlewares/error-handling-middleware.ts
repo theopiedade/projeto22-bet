@@ -20,7 +20,7 @@ export function handleApplicationErrors(
     });
   }
 
-  if (err.name === 'InvalidCredentialsError' || err.name === 'JsonWebTokenError') {
+  if (err.name === 'InvalidDataError') {
     return res.status(httpStatus.UNAUTHORIZED).send({
       message: err.message,
     });
