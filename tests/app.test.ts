@@ -1,7 +1,8 @@
 import supertest from "supertest";
-import app, { init } from "./app";
+import app, { init } from "../src/app";
 import { cleanDb } from "./helpers";
 import { faker } from '@faker-js/faker';
+
 
 
 beforeAll(async () => {

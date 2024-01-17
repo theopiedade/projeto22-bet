@@ -2,8 +2,8 @@ import 'reflect-metadata';
 import 'express-async-errors';
 import express, { Express } from 'express';
 import cors from 'cors';
-import { handleApplicationErrors } from '@/middlewares';
-import { participantsRouter, gamesRouter, betsRouter } from '@/routers';
+import { handleApplicationErrors } from './middlewares/error-handling-middleware';
+import { participantsRouter, gamesRouter, betsRouter } from './routers/index';
 import { loadEnv, connectDb, disconnectDB } from '@/config';
 
 loadEnv();
